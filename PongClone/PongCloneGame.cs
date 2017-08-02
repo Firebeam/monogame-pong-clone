@@ -13,9 +13,10 @@ namespace PongClone
         SpriteBatch spriteBatch;
 
         private GameObjects _gameObjects;
-        private Ball ball;
+        private Ball _ball;
         private Paddle _playerPaddle;
         private Paddle _enemyPaddle;
+        private Score _score;
 
         public PongCloneGame()
         {
@@ -50,14 +51,17 @@ namespace PongClone
             _playerPaddle = new Paddle(Content.Load<Texture2D>("Paddle"), Vector2.Zero, gameBoundaries, PlayerType.Human);
             Texture2D enemyTexture = Content.Load<Texture2D>("Paddle2");
             _enemyPaddle = new Paddle(enemyTexture, new Vector2(gameBoundaries.Width - enemyTexture.Width, 0), gameBoundaries, PlayerType.Computer);
-            ball = new Ball(Content.Load<Texture2D>("Ball"), Vector2.Zero, gameBoundaries);
-            ball.AttachTo(_playerPaddle);
+            _ball = new Ball(Content.Load<Texture2D>("Ball"), Vector2.Zero, gameBoundaries);
+            _ball.AttachTo(_playerPaddle);
+
+            _score = new Score(Content.Load<SpriteFont>("Score"), gameBoundaries);
 
             _gameObjects = new GameObjects
             {
                 PlayerPaddle = _playerPaddle,
-                Ball = ball,
-                EnemyPaddle = _enemyPaddle
+                Ball = _ball,
+                EnemyPaddle = _enemyPaddle,
+                Score = _score
             };
         }
 
@@ -82,7 +86,8 @@ namespace PongClone
 
             _playerPaddle.Update(gameTime, _gameObjects);
             _enemyPaddle.Update(gameTime, _gameObjects);
-            ball.Update(gameTime, _gameObjects);
+            _ball.Update(gameTime, _gameObjects);
+            _score.Update(gameTime, _gameObjects);
 
             base.Update(gameTime);
         }
@@ -98,7 +103,8 @@ namespace PongClone
             spriteBatch.Begin();
             _playerPaddle.Draw(spriteBatch);
             _enemyPaddle.Draw(spriteBatch);
-            ball.Draw(spriteBatch);
+            _ball.Draw(spriteBatch);
+            _score.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

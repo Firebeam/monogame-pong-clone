@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -24,12 +25,15 @@ namespace PongClone
         {
             if (_playerType == PlayerType.Computer)
             {
-                if (gameObjects.Ball.Location.Y + gameObjects.Ball.Height < Location.Y)
+                Random random = new Random();
+                int reactionThreshold = random.Next(30, 130);
+
+                if (gameObjects.Ball.Location.Y + gameObjects.Ball.Height < Location.Y + reactionThreshold)
                 {
                     Velocity = new Vector2(0, -PADDLE_SPEED);
                 }
 
-                if (gameObjects.Ball.Location.Y > Location.Y + Height)
+                if (gameObjects.Ball.Location.Y > Location.Y + Height + reactionThreshold)
                 {
                     Velocity = new Vector2(0, PADDLE_SPEED);
                 }
