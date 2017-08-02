@@ -7,12 +7,17 @@ namespace PongClone
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class PongCloneGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        private GameObjects _gameObjects;
+        private Ball ball;
+        private Paddle _playerPaddle;
+        private Paddle _enemyPaddle;
+
+        public PongCloneGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -26,7 +31,7 @@ namespace PongClone
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -40,7 +45,20 @@ namespace PongClone
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            Rectangle gameBoundaries = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
+
+            _playerPaddle = new Paddle(Content.Load<Texture2D>("Paddle"), Vector2.Zero, gameBoundaries, PlayerType.Human);
+            Texture2D enemyTexture = Content.Load<Texture2D>("Paddle2");
+            _enemyPaddle = new Paddle(enemyTexture, new Vector2(gameBoundaries.Width - enemyTexture.Width, 0), gameBoundaries, PlayerType.Computer);
+            ball = new Ball(Content.Load<Texture2D>("Ball"), Vector2.Zero, gameBoundaries);
+            ball.AttachTo(_playerPaddle);
+
+            _gameObjects = new GameObjects
+            {
+                PlayerPaddle = _playerPaddle,
+                Ball = ball,
+                EnemyPaddle = _enemyPaddle
+            };
         }
 
         /// <summary>
@@ -62,7 +80,9 @@ namespace PongClone
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _playerPaddle.Update(gameTime, _gameObjects);
+            _enemyPaddle.Update(gameTime, _gameObjects);
+            ball.Update(gameTime, _gameObjects);
 
             base.Update(gameTime);
         }
@@ -75,7 +95,11 @@ namespace PongClone
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            _playerPaddle.Draw(spriteBatch);
+            _enemyPaddle.Draw(spriteBatch);
+            ball.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
