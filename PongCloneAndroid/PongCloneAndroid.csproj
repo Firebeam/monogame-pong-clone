@@ -58,8 +58,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PongClone\Ball.cs">
+      <Link>Ball.cs</Link>
+    </Compile>
+    <Compile Include="..\PongClone\Game1.cs">
+      <Link>Game1.cs</Link>
+    </Compile>
+    <Compile Include="..\PongClone\GameObjects.cs">
+      <Link>GameObjects.cs</Link>
+    </Compile>
+    <Compile Include="..\PongClone\Paddle.cs">
+      <Link>Paddle.cs</Link>
+    </Compile>
+    <Compile Include="..\PongClone\Score.cs">
+      <Link>Score.cs</Link>
+    </Compile>
+    <Compile Include="..\PongClone\Sprite.cs">
+      <Link>Sprite.cs</Link>
+    </Compile>
     <Compile Include="Activity1.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

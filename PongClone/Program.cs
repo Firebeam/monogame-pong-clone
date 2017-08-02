@@ -14,7 +14,7 @@ namespace PongClone
         [STAThread]
         static void Main()
         {
-            using (var game = new PongCloneGame())
+            using (var game = new Game1())
                 game.Run();
         }
     }
