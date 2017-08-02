@@ -5,16 +5,34 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongClone", "PongClone\PongClone.csproj", "{36A79D7F-6797-4762-99C0-31C7865AB600}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongCloneAndroid", "PongCloneAndroid\PongCloneAndroid.csproj", "{0426AED7-31DF-4F0E-960A-0400C447E3BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36A79D7F-6797-4762-99C0-31C7865AB600}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{36A79D7F-6797-4762-99C0-31C7865AB600}.Debug|x86.ActiveCfg = Debug|x86
 		{36A79D7F-6797-4762-99C0-31C7865AB600}.Debug|x86.Build.0 = Debug|x86
+		{36A79D7F-6797-4762-99C0-31C7865AB600}.Release|Any CPU.ActiveCfg = Release|x86
 		{36A79D7F-6797-4762-99C0-31C7865AB600}.Release|x86.ActiveCfg = Release|x86
 		{36A79D7F-6797-4762-99C0-31C7865AB600}.Release|x86.Build.0 = Release|x86
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|x86.Build.0 = Release|Any CPU
+		{0426AED7-31DF-4F0E-960A-0400C447E3BF}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
