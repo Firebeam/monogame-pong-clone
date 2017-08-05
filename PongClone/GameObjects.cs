@@ -6,5 +6,6 @@ namespace PongClone
         public Paddle EnemyPaddle { get; set; }
         public Ball Ball { get; set; }
         public Score Score { get; set; }
+        public TouchInput TouchInput { get; set; }
     }
 }

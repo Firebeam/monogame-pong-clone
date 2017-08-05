@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace PongClone
 {
@@ -33,6 +34,8 @@ namespace PongClone
         protected override void Initialize()
         {
             IsMouseVisible = true;
+
+            TouchPanel.EnabledGestures = GestureType.VerticalDrag | GestureType.Flick | GestureType.Tap;
 
             base.Initialize();
         }
@@ -84,12 +87,37 @@ namespace PongClone
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            _gameObjects.TouchInput = new TouchInput();
+            GetTouchInput();
+
             _playerPaddle.Update(gameTime, _gameObjects);
             _enemyPaddle.Update(gameTime, _gameObjects);
             _ball.Update(gameTime, _gameObjects);
             _score.Update(gameTime, _gameObjects);
 
             base.Update(gameTime);
+        }
+
+        private void GetTouchInput()
+        {
+            while (TouchPanel.IsGestureAvailable)
+            {
+                GestureSample gesture = TouchPanel.ReadGesture();
+                if (gesture.Delta.Y > 0)
+                {
+                    _gameObjects.TouchInput.Down = true;
+                }
+
+                if (gesture.Delta.Y < 0)
+                {
+                    _gameObjects.TouchInput.Up = true;
+                }
+
+                if (gesture.GestureType == GestureType.Tap)
+                {
+                    _gameObjects.TouchInput.Tapped = true;
+                }
+            }
         }
 
         /// <summary>

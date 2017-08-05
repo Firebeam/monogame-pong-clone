@@ -76,6 +76,9 @@
     <Compile Include="..\PongClone\Sprite.cs">
       <Link>Sprite.cs</Link>
     </Compile>
+    <Compile Include="..\PongClone\TouchInput.cs">
+      <Link>TouchInput.cs</Link>
+    </Compile>
     <Compile Include="Activity1.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

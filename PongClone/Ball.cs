@@ -6,6 +6,11 @@ namespace PongClone
 {
     public class Ball : Sprite
     {
+#if ANDROID
+        private const float BallSpeed = 8.0f;
+#else
+        private const float BallSpeed = 5.0f;
+#endif
         private Paddle _attachedToPaddle;
 
         public Ball(Texture2D texture, Vector2 location, Rectangle gameBoundaries) : base(texture, location, gameBoundaries)
@@ -23,9 +28,9 @@ namespace PongClone
 
         public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && _attachedToPaddle != null)
+            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || gameObjects.TouchInput.Tapped) && _attachedToPaddle != null)
             {
-                Vector2 newVelocity = new Vector2(5.0f, _attachedToPaddle.Velocity.Y * .6f);
+                Vector2 newVelocity = new Vector2(BallSpeed, _attachedToPaddle.Velocity.Y * .6f);
                 Velocity = newVelocity;
                 _attachedToPaddle = null;
             }

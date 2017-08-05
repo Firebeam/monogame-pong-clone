@@ -14,7 +14,13 @@ namespace PongClone
     public class Paddle : Sprite
     {
         private readonly PlayerType _playerType;
+
+#if ANDROID
+        private const float PADDLE_SPEED = 5f;
+#else
         private const float PADDLE_SPEED = 3.5f;
+#endif
+
 
         public Paddle(Texture2D texture, Vector2 location, Rectangle bounds, PlayerType playerType) : base(texture, location, bounds)
         {
@@ -41,12 +47,12 @@ namespace PongClone
 
             if (_playerType == PlayerType.Human)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                if (Keyboard.GetState().IsKeyDown(Keys.Up) || gameObjects.TouchInput.Up)
                 {
                     Velocity = new Vector2(0, -PADDLE_SPEED);
                 }
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                if (Keyboard.GetState().IsKeyDown(Keys.Down) || gameObjects.TouchInput.Down)
                 {
                     Velocity = new Vector2(0, PADDLE_SPEED);
                 }
