@@ -22,6 +22,7 @@ namespace PongClone
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            //graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
 
@@ -49,7 +50,7 @@ namespace PongClone
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Rectangle gameBoundaries = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
+            Rectangle gameBoundaries = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
             _playerPaddle = new Paddle(Content.Load<Texture2D>("Paddle"), Vector2.Zero, gameBoundaries, PlayerType.Human);
             Texture2D enemyTexture = Content.Load<Texture2D>("Paddle2");
